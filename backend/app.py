@@ -107,6 +107,5 @@ class AnalyzeResponse(BaseModel):
     tree: Dict[str, Any]
     svg: str
 
-# ---------------------------
-# Helpers
+
 
