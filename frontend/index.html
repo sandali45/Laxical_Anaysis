@@ -176,6 +176,13 @@
         ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0);
+        
+        const link = document.createElement('a');
+        link.download = 'parse-tree.png';
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+        
+
       
           URL.revokeObjectURL(svgUrl);
       };
