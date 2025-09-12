@@ -42,6 +42,28 @@ body {
 .dark-mode .text-gray-500 { color: #b3b3b3 !important; }
 .dark-mode .border { border-color: #444 !important; }
 .dark-mode textarea#source { background: #2a2a3f !important; color: #f3f3f3 !important; border: 2px solid #74b9ff !important; }
+.dark-mode #svgWrap { background: #1e1e2f !important; }
+.dark-mode #svgWrap svg { 
+    filter: invert(0.9) hue-rotate(180deg);
+    background: transparent !important;
+}
+.dark-mode .playful-btn {
+    background: #74b9ff;
+    color: #1e1e2f;
+}
+.dark-mode table th {
+    color: #74b9ff;
+}
+.dark-mode code {
+    background: #3a3a5a;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+.dark-mode #apiInput {
+    background: #2a2a3f;
+    color: #f3f3f3;
+    border-color: #444;
+}
 
 /* Dark toggle */
 .dark-toggle {
@@ -63,6 +85,7 @@ body {
 .rainbow {
     background: linear-gradient(90deg,#55efc4 0%,#81ecec 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
     font-size: 2.2rem;

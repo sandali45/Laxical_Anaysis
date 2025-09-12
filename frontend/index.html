@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="style.css">
   
 </head>
 <body class="bg-gray-50">
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="flex items-center gap-2">
-        <span id="apiUrl" class="text-sm text-gray-500">API: http://127.0.0.1:8000</span>
+        <span id="apiUrl" class="text-sm text-gray-500">API: http://127.0.0.1:8080</span>
         <button id="darkToggle" class="dark-toggle">🌙 Dark Mode</button>
       </div>
     </header>
@@ -103,7 +103,7 @@
     const exportBtn = document.getElementById('exportBtn');
     const darkToggle = document.getElementById('darkToggle');
 
-    let API = 'http://127.0.0.1:8000';
+    let API = 'http://127.0.0.1:8080';
     apiInput.value = API;
 
     setApiBtn.onclick = () => {
@@ -111,8 +111,17 @@
       apiLabel.textContent = 'API: ' + API;
     };
 
+    // Check for saved dark mode preference
+    if (localStorage.getItem('darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+      darkToggle.textContent = '☀️ Light Mode';
+    }
+
     darkToggle.onclick = () => {
       document.body.classList.toggle('dark-mode');
+      const isDark = document.body.classList.contains('dark-mode');
+      localStorage.setItem('darkMode', isDark);
+      darkToggle.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
     };
 
     function showErrors(list) {
