@@ -168,25 +168,6 @@ def _format_syntax_error(e: UnexpectedInput, text: str) -> ErrorOut:
         column=getattr(e, "column", None),
     )
 
-# ---------------------------
-# API
-# ---------------------------
-@app.post("/analyze", response_model=AnalyzeResponse)
-def analyze(req: AnalyzeRequest):
-    text = req.source or ""
-    tokens_out = [TokenOut(type=t.type, value=str(t), line=getattr(t, "line", None), column=getattr(t, "column", None))
-                  for t in tokens_only(text)]
-    errors: List[ErrorOut] = []
-    parsed_tree: Optional[Tree] = None
-    try:
-        parsed_tree = parser.parse(text)
-    except UnexpectedInput as e:
-        errors.append(_format_syntax_error(e, text))
-        return AnalyzeResponse(tokens=tokens_out, errors=errors, tree={}, svg="")
-    # Semantic checks can be added here
-    tree_json = tree_to_json(parsed_tree)
-    svg = tree_to_svg(parsed_tree)
-    return AnalyzeResponse(tokens=tokens_out, errors=errors, tree=tree_json, svg=svg)
 
 
 
